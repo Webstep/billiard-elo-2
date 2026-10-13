@@ -32,7 +32,7 @@ export async function loader({ context }: Route.LoaderArgs) {
       .orderBy(desc(schema.user.eloRating))
       .groupBy(schema.user.id)
       .having(({ matchCount, lastMatchDate }) => and(gte(matchCount, 5), gt(lastMatchDate, sql`now() - '30 day'::interval`)))
-      .limit(10);
+      .limit(20);
 
     return {
       users,
